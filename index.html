@@ -1,62 +1,240 @@
 <!doctype html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>University of Melbourne</title>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<link rel="stylesheet" href="dist/reset.css">
-		<link rel="stylesheet" href="dist/reveal.css">
-		<link rel="stylesheet" href="dist/theme/uom.css">
+	<title>Evaluating Nanopore-based bacterial variant calling</title>
 
-		<!-- Theme used for syntax highlighted code -->
-		<link rel="stylesheet" href="plugin/highlight/monokai.css">
+	<link rel="stylesheet" href="dist/reset.css">
+	<link rel="stylesheet" href="dist/reveal.css">
+	<link rel="stylesheet" href="dist/theme/uom.css">
 
-		<!--    ============ Border ============               -->
-		<div class="line top"></div>
-		<div class="line bottom"></div>
-<!--		<div class="line left"></div>-->
-<!--		<div class="line right"></div>-->
-		<!--    ================================               -->
+	<!-- Theme used for syntax highlighted code -->
+	<link rel="stylesheet" href="plugin/highlight/monokai.css">
 
-		<!--    ============ Logos ============               -->
-        <!-- <img src="./imgs/logos/doherty.jpg" id="dohertyLogo"> -->
-        <!-- <img src="./imgs/logos/csi.png" id="dohertyLogo"> -->
-		<img src="./imgs/logos/uom.svg" id="uomLogo">
-		<!--    ================================               -->
+	<!--    ============ Border ============               -->
+	<div class="line top"></div>
+	<div class="line bottom"></div>
+	<!--		<div class="line left"></div>-->
+	<!--		<div class="line right"></div>-->
+	<!--    ================================               -->
 
-	</head>
-	<body>
-		<div class="reveal">
-			<div class="slides">
-				<section>Slide 1</section>
-				<section>Slide 2
-						<aside class="notes">
-						<p>Some notes</p>
-						</aside>
-						<p>Some slide text</p>
-						<aside class="notes">
-						<p>and some more notes</p>
-					</aside>
+	<!--    ============ Logos ============               -->
+	<img src="./imgs/logos/doherty.jpg" id="dohertyLogo">
+	<!-- <img src="./imgs/logos/csi.png" id="dohertyLogo"> -->
+	<img src="./imgs/logos/uom.svg" id="uomLogo">
+	<img src="./imgs/elife-qr.png" id="qrCode">
+	<!--    ================================               -->
+
+</head>
+
+<body>
+	<div class="reveal">
+		<div class="slides">
+			<section>
+				<h3>Evaluating Nanopore-based bacterial variant calling</h3>
+				<!-- add horiztonal line -->
+				<hr>
+				<h4 style="color: #E77052;">Michael Hall</h4>
+				<p><b>Postdoc</b> | <em>Coin Lab</em> @ <u>the Doherty Institute</u></p>
+				<!-- Add a div to contain the images -->
+
+				<img src="./imgs/elife-qr.png" style="height: 250px;">
+
+			</section>
+
+			<section>
+				<h3>Background</h3>
+				<ul>
+					<li class="fragment fade-in-then-semi-out">Long-read sequencing technologies are revolutionising genomics</li>
+					<li class="fragment fade-in-then-semi-out">Variant calling is fundamental to so many bacterial genomics applications</li>
+					<li class="fragment fade-in-then-semi-out">Deep learning models have been developed to improve variant calling</li>
+					<li class="fragment">But how do they compare to traditional methods in bacteria?</li>
+				</ul>
+			</section>
+
+			<section>
+				<h3>Data</h3>
+				<ul>
+					<li>14 bacterial species</li>
+					<!-- add a nested list -->
+					<ul style="font-size: 0.5em; font-style: italic; display: flex; flex-wrap: wrap;">
+						<li style="flex-basis: 33%;">Campylobacter jejuni</li>
+						<li style="flex-basis: 33%;">Campylobacter lari</li>
+						<li style="flex-basis: 33%;">Escherichia coli</li>
+						<li style="flex-basis: 33%;">Klebsiella pneumoniae</li>
+						<li style="flex-basis: 33%;">Klebsiella variicola</li>
+						<li style="flex-basis: 33%;">Listeria monocytogenes</li>
+						<li style="flex-basis: 33%;">Listeria ivanovii</li>
+						<li style="flex-basis: 33%;">Listeria welshimeri</li>
+						<li style="flex-basis: 33%;">Mycobacterium tuberculosis</li>
+						<li style="flex-basis: 33%;">Salmonella enterica</li>
+						<li style="flex-basis: 33%;">Staphylococcus aureus</li>
+						<li style="flex-basis: 33%;">Strepococcus pyogenes</li>
+						<li style="flex-basis: 33%;">Strepococcus dysgalactiae</li>
+						<li style="flex-basis: 33%;">Vibrio parahaemolyticus</li>
+					</ul>
+					<li>ONT R10.4.1 @ 5kHz sampling rate</li>
+					<li>Simplex and duplex</li>
+					<li>fast, hac, and sup</li>
+					<li>Perfect assemblies  <img src="./imgs/wick.jpg" style="height: 40px; vertical-align: bottom;"></li>
+				</ul>
+			</section>
+
+			<section>
+				<h3>Read-level accuracy</h3>
+				<img src="./imgs/read_identity.png" id="accuracy">
+			</section>
+
+			<section>
+				<h3>Create variant truthset</h3>
+				<ul>
+					<li>Select variant donor</li>
+					<li class="fragment">Find differences between reference and donor</li>
+					<li class="fragment">Apply differences to reference</li>
+				</ul>
+				</a>
+			</section>
+
+			<section>
+				<h3>Variant calling</h3>
+				<ul>
+					<li>BCFtools</li>
+					<li style="color: #59B17F;">Clair3</li>
+					<li style="color: #59B17F;">DeepVariant</li>
+					<li>FreeBayes</li>
+					<li>Longshot</li>
+					<li style="color: #59B17F;">Medaka</li>
+					<li style="color: #59B17F;">NanoCaller</li>
+				</ul>
+				<p style="color: #59B17F; font-size: small;">deep learning models</p>
+			</section>
+
+			<section>
+				<h3>Best F1 Score</h3>
+				<img src="./imgs/f1.png" id="f1" style="height: 500px;">
+			</section>
+
+			<section>
+				<h3>Errors</h3>
+				<ul>
+					<li>Illumina missed calls - dense variation and repeats</li>
+					<li class="fragment">ONT homopolymers - essentially gone</li>
+				</ul>
+			</section>
+
+			<section>
+				<section>
+					<h3>How low can you go? (SNPs)</h3>
+					<img src="./imgs/depth.snps.png" id="depth-snps" style="height: 500px;">
 				</section>
-			</div>
+				<section>
+					<h3>How low can you go? (indels)</h3>
+					<img src="./imgs/depth.indels.png" id="depth-indels" style="height: 500px;">
+				</section>
+			</section>
+
+			<section>
+				<h3>Conclusions</h3>
+				<ul>
+					<li class="fragment">Use sup model</li>
+					<li class="fragment">ONT read-level accuracy &gt;Q20</li>
+					<li class="fragment">Use Clair3 - better than Illumina</li>
+					<li class="fragment">Homopolymer-induced errors nearly gone</li>
+					<li class="fragment">You can go surprisingly low with depth (10x if feeling brave, 25x otherwise)</li>
+				</ul>
+			</section>
+
+			<section>
+				<h3>Acknowledgements</h3>
+				<ul style="display: flex; flex-wrap: wrap;">
+					<li style="flex-basis: 50%;">Ryan Wick</li>
+					<li style="flex-basis: 50%;">Louise Judd</li>
+					<li style="flex-basis: 50%;">An Nguyen</li>
+					<li style="flex-basis: 50%;">Ouli Xie</li>
+					<li style="flex-basis: 50%;">Mark Davies</li>
+					<li style="flex-basis: 50%;">Eike Steinig</li>
+					<li style="flex-basis: 50%;">Torsten Seemann</li>
+					<li style="flex-basis: 50%;">Tim Stinear</li>
+					<li style="flex-basis: 50%;">Lachlan Coin</li>
+				</ul>
+			</section>
+
+			<section>
+				<h3>Questions?</h3>
+				<figure>
+					<a href="https://doi.org/10.7554/eLife.98300.1" target="_blank">
+						<img src="./imgs/elife-qr.png" style="height: 250px;">
+					</a>
+
+					</figure>
+				<p>DOI: <b>10.7554/eLife.98300.1</b></p>
+			</section>
+
+			<!-- extra slides -->
+			<section>
+				<img src="./imgs/table.png" id="mutrefSummary">
+			</section>
+			
+			<section>
+				<h3>Precision-recall curves</h3>
+				<img src="./imgs/pr_curve.png" id="pr" style="height: 500px;">
+			</section>
+
+			<section>
+				<h3>Illumina missed calls</h3>
+				<img src="./imgs/false_calls.png" id="illumina" style="height: 500px;">
+			</section>
+
+			<section>
+				<h3>Dense variation pileup</h3>
+				<img src="./imgs/density-pileup.png" id="dense" style="height: 500px;">
+			</section>
+
+			<section>
+				<h3>Repetitive region pileup</h3>
+				<img src="./imgs/repetitive-pileup.png" id="repeat" style="height: 500px;">
+			</section>
+
+			<section>
+				<h3>ONT homopolymers</h3>
+				<img src="./imgs/homopolymer.png" id="homopolymers" style="height: 500px;">
+				<p style="font-size: 0.4em">
+				</p>
+			</section>
+
+			<section>
+				<section>
+					<h3>Resource usage</h3>
+					<img src="./imgs/bench.png" id="resource" style="height: 500px;">
+				</section>
+
+				<section>
+					<h3>Resource usage - basecalling</h3>
+					<img src="./imgs/gpu.png" id="resource" style="height: 500px;">
+				</section>
+			</section>
 		</div>
+	</div>
 
-		<script src="dist/reveal.js"></script>
-		<script src="plugin/notes/notes.js"></script>
-		<script src="plugin/markdown/markdown.js"></script>
-		<script src="plugin/highlight/highlight.js"></script>
-		<script>
-			// More info about initialization & config:
-			// - https://revealjs.com/initialization/
-			// - https://revealjs.com/config/
-			Reveal.initialize({
-				hash: true,
+	<script src="dist/reveal.js"></script>
+	<script src="plugin/notes/notes.js"></script>
+	<script src="plugin/markdown/markdown.js"></script>
+	<script src="plugin/highlight/highlight.js"></script>
+	<script>
+		// More info about initialization & config:
+		// - https://revealjs.com/initialization/
+		// - https://revealjs.com/config/
+		Reveal.initialize({
+			hash: true,
 
-				// Learn about plugins: https://revealjs.com/plugins/
-				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
-			});
-		</script>
-	</body>
+			// Learn about plugins: https://revealjs.com/plugins/
+			plugins: [RevealMarkdown, RevealHighlight, RevealNotes]
+		});
+		Reveal.configure({ pdfMaxPagesPerSlide: 1 });
+	</script>
+</body>
+
 </html>

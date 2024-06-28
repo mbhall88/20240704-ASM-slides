@@ -54,7 +54,7 @@ $headingFont: 'Noto serif', Georgia, sans-serif;
 $mainFont: 'Source Sans Pro', Calibri, sans-serif;
 $headingTextShadow: none;
 $headingLetterSpacing: normal;
-$headingTextTransform: uppercase;
+$headingTextTransform: none;
 $headingFontWeight: 700;
 $linkColor: $darkBlue;
 $linkColorHover: lighten( $linkColor, 15% );
@@ -77,7 +77,7 @@ $heading4Size: 1.0em;
  * BORDER OF SLIDES
  *********************************************/
 $borderColour: $uomBlue;
-$borderWidth: 50px;
+$borderWidth: 25px;
 
 .reveal .controls {
   right: 50px;
@@ -152,16 +152,27 @@ $borderWidth: 50px;
 
 #dohertyLogo {
   position: absolute;
-  left: 100px;
+  left: 75px;
   bottom: #{$borderWidth + 5};
   width: auto;
   height: 7%;
+  z-index: 1000;
 }
 
 #uomLogo {
   position: absolute;
-  left: 2px;
+  left: 10px;
   bottom: #{$borderWidth + 5};
   width: auto;
   height: 7%;
+  z-index: 1000;
+}
+
+#qrCode {
+  position: absolute;
+  right: 10px;
+  bottom: #{$borderWidth + 5};
+  width: auto;
+  height: 11%;
+  z-index: 1000;
 }
